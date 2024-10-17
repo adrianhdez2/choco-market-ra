@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="./src/index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Choco Market RA</title>
+</head>
+
+<body class="flex items-center justify-center text-center flex-col">
+  <h1 class="text-2xl my-20">Choco Market Realidad Aumentada (RA)</h1>
+
+  <div class="w-full md:w-1/2 flex items-center justify-center flex-col md:flex-row gap-y-3 md:gap-x-3">
+    <article class="w-[350px] p-5 flex flex-col items-center justify-center gap-y-2 border rounded-md mx-auto">
+      <h2 class="text-center text-lg">Abanico</h2>
+      <model-viewer class="" alt="Artesania tabasqueña" src="./models/abanico.glb" ar poster="./posters/abanico.webp"
+        shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+    </article>
+
+    <article class="w-[350px] p-5 flex flex-col items-center justify-center gap-y-2 border rounded-md mx-auto">
+      <h2 class="text-center text-lg">Jícara labrada</h2>
+      <model-viewer class="" alt="Artesania tabasqueña" src="./models/jicara.glb" ar poster="./posters/jicara.webp"
+        shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+    </article>
+  </div>
+
+
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+</body>
+
+
+</html>
