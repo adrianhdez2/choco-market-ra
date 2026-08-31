@@ -4,60 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="shortcut icon" href="./icon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="./src/index.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Choco Market RA</title>
+
+  <!-- Google Model Viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
 
-<body class="flex items-center justify-center text-center flex-col">
-  <h1 class="text-2xl my-20">Choco Market Realidad Aumentada (RA)</h1>
-
-  <div class="w-full md:w-1/2 flex items-center justify-center flex-col flex-wrap md:flex-row gap-y-3 md:gap-x-3">
-    <article class="w-[350px] p-5 flex flex-col items-center justify-center gap-y-2 border rounded-md mx-auto">
-      <h2 class="text-center text-lg">Abanico</h2>
-      <model-viewer class="" alt="Artesania tabasqueña" src="./models/abanico.glb" ar poster="./posters/abanico.webp"
-        shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
-    </article>
-
-    <article class="w-[350px] p-5 flex flex-col items-center justify-center gap-y-2 border rounded-md mx-auto">
-      <h2 class="text-center text-lg">Jícara labrada</h2>
-      <model-viewer class="" alt="Artesania tabasqueña" src="./models/jicara.glb" ar poster="./posters/jicara.webp"
-        shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
-    </article>
-
-    <article class="w-[350px] p-5 flex flex-col items-center justify-center gap-y-2 border rounded-md mx-auto">
-      <h2 class="text-center text-lg">Dooom</h2>
-      <model-viewer class="" alt="Doom" src="./models/doom.glb" ar poster="./posters/doom.webp"
-        shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
-    </article>
-
-    
-    <article class="w-[350px] p-5 flex flex-col items-center justify-center gap-y-2 border rounded-md mx-auto">
-      <h2 class="text-center text-lg">Doom Animado</h2>
-      <model-viewer class="" alt="Doom" src="./models/doomAnimated.glb" ar poster="./posters/doomA.webp"
-        shadow-intensity="1" camera-controls touch-action="pan-y" autoplay animation-loop></model-viewer>
-    </article>
-
-    <article class="w-[350px] p-5 flex flex-col items-center justify-center gap-y-2 border rounded-md mx-auto">
-      <h2 class="text-center text-lg">Doom Animado 180</h2>
-      <model-viewer class="" alt="Doom" ios-src="./models/doomUSDZ.usdz" src="./models/doomAnimado180.glb" ar poster="./posters/doomA180.webp"
-        shadow-intensity="1" camera-controls touch-action="pan-y" autoplay animation-loop></model-viewer>
-    </article>
-
-    <!-- Link a la experiencia AR con marcador (funciona en iOS sin USDZ) -->
-    <article class="w-full p-5 flex flex-col items-center justify-center gap-y-2 border-2 border-dashed border-orange-400 rounded-md mx-auto bg-orange-50">
-      <h2 class="text-center text-lg font-semibold text-orange-800">🎯 AR con Marcador (iOS Compatible)</h2>
-      <p class="text-sm text-orange-700 max-w-md">Experiencia AR alternativa que funciona en iOS y Android. Usa un marcador impreso para ver los modelos animados.</p>
-      <a href="./ar.html" class="mt-2 px-6 py-2 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-colors">
-        Abrir experiencia AR →
-      </a>
-    </article>
-  </div>
-
-
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+<body class="bg-neutral-50 text-neutral-800 antialiased">
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
-
 
 </html>

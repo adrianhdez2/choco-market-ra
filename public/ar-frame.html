@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>AR Engine</title>
+
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <!-- AR.js -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <!-- aframe-extras -->
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.5.0/dist/aframe-extras.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      background: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <a-scene
+    embedded
+    vr-mode-ui="enabled: false"
+    renderer="logarithmicDepthBuffer: true; colorManagement: true;"
+    arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+    loading-screen="enabled: false">
+
+    <!-- Precargar modelos -->
+    <a-assets timeout="60000">
+      <a-asset-item id="doom-animated-model" src="./models/doomAnimated.glb"></a-asset-item>
+      <a-asset-item id="doom-180-model" src="./models/doomAnimado180.glb"></a-asset-item>
+    </a-assets>
+
+    <!-- Marcador HIRO (o custom .patt) -->
+    <a-marker preset="hiro" id="ar-marker" emitevents="true">
+      <a-entity
+        id="model-doom-animated"
+        gltf-model="#doom-animated-model"
+        animation-mixer="clip: *; loop: repeat; timeScale: 1;"
+        scale="0.05 0.05 0.05"
+        position="0 0 0"
+        rotation="-90 0 0"
+        visible="true">
+      </a-entity>
+
+      <a-entity
+        id="model-doom-180"
+        gltf-model="#doom-180-model"
+        animation-mixer="clip: *; loop: repeat; timeScale: 1;"
+        scale="0.05 0.05 0.05"
+        position="0 0 0"
+        rotation="-90 0 0"
+        visible="false">
+      </a-entity>
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <script>
+    const scene = document.querySelector('a-scene');
+    const marker = document.getElementById('ar-marker');
+
+    function notifyParent(type, payload = {}) {
+      if (window.parent) {
+        window.parent.postMessage({ type, ...payload }, '*');
+      }
+    }
+
+    scene.addEventListener('loaded', () => {
+      notifyParent('AR_SCENE_LOADED');
+    });
+
+    marker.addEventListener('markerFound', () => {
+      notifyParent('AR_MARKER_FOUND');
+    });
+
+    marker.addEventListener('markerLost', () => {
+      notifyParent('AR_MARKER_LOST');
+    });
+
+    // Escuchar mensajes desde React
+    window.addEventListener('message', (event) => {
+      if (!event.data) return;
+      if (event.data.type === 'SWITCH_MODEL') {
+        const modelName = event.data.model;
+        const doomAnimated = document.getElementById('model-doom-animated');
+        const doom180 = document.getElementById('model-doom-180');
+
+        if (doomAnimated && doom180) {
+          doomAnimated.setAttribute('visible', modelName === 'doom-animated');
+          doom180.setAttribute('visible', modelName === 'doom-180');
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
