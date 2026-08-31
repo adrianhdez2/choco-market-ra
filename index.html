@@ -13,7 +13,7 @@
 <body class="flex items-center justify-center text-center flex-col">
   <h1 class="text-2xl my-20">Choco Market Realidad Aumentada (RA)</h1>
 
-  <div class="w-full md:w-1/2 flex items-center justify-center flex-col md:flex-row gap-y-3 md:gap-x-3">
+  <div class="w-full md:w-1/2 flex items-center justify-center flex-col flex-wrap md:flex-row gap-y-3 md:gap-x-3">
     <article class="w-[350px] p-5 flex flex-col items-center justify-center gap-y-2 border rounded-md mx-auto">
       <h2 class="text-center text-lg">Abanico</h2>
       <model-viewer class="" alt="Artesania tabasqueña" src="./models/abanico.glb" ar poster="./posters/abanico.webp"
@@ -39,7 +39,11 @@
         shadow-intensity="1" camera-controls touch-action="pan-y" autoplay animation-loop></model-viewer>
     </article>
 
-
+    <article class="w-[350px] p-5 flex flex-col items-center justify-center gap-y-2 border rounded-md mx-auto">
+      <h2 class="text-center text-lg">Doom Animado 180</h2>
+      <model-viewer class="" alt="Doom" src="./models/doomAnimado180.glb" ar poster="./posters/doomA180.webp"
+        shadow-intensity="1" camera-controls touch-action="pan-y" autoplay animation-loop></model-viewer>
+    </article>
   </div>
 
 
