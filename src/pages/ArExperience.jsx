@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function ArExperience() {
   const [activeModel, setActiveModel] = useState('doom-animated');
-  const [scale, setScale] = useState(0.2); // Escala por defecto aumentada
+  const [scale, setScale] = useState(1); // Escala por defecto aumentada
   const [isTracking, setIsTracking] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showMarkerModal, setShowMarkerModal] = useState(false);
