@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function ArExperience() {
   const [activeModel, setActiveModel] = useState('doom-animated');
+  const [scale, setScale] = useState(0.2); // Escala por defecto aumentada
   const [isTracking, setIsTracking] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showMarkerModal, setShowMarkerModal] = useState(false);
@@ -22,7 +23,6 @@ export default function ArExperience() {
 
     window.addEventListener('message', handleMessage);
 
-    // Fallback de carga por si el evento no llega
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 6000);
@@ -43,6 +43,17 @@ export default function ArExperience() {
     }
   };
 
+  const handleScaleChange = (newScale) => {
+    const clamped = Math.min(Math.max(Number(newScale.toFixed(2)), 0.05), 1.0);
+    setScale(clamped);
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      iframeRef.current.contentWindow.postMessage(
+        { type: 'SET_SCALE', scale: clamped },
+        '*'
+      );
+    }
+  };
+
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-black text-white font-sans select-none">
       {/* Pantalla de carga */}
@@ -56,7 +67,7 @@ export default function ArExperience() {
         </div>
       )}
 
-      {/* Visor AR (iframe aislado para prevenir memory leaks en cámara) */}
+      {/* Visor AR */}
       <iframe
         ref={iframeRef}
         src="./ar-frame.html"
@@ -105,6 +116,27 @@ export default function ArExperience() {
         </button>
       </header>
 
+      {/* Controles de Zoom / Escala (Lateral Derecho) */}
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-2 bg-black/60 backdrop-blur-xl p-2 rounded-2xl border border-white/15 shadow-2xl">
+        <button
+          onClick={() => handleScaleChange(scale + 0.05)}
+          className="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 active:scale-90 flex items-center justify-center font-bold text-lg text-white transition"
+          title="Aumentar tamaño"
+        >
+          +
+        </button>
+        <span className="text-[10px] font-semibold text-neutral-300 select-none">
+          {Math.round((scale / 0.2) * 100)}%
+        </span>
+        <button
+          onClick={() => handleScaleChange(scale - 0.05)}
+          className="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 active:scale-90 flex items-center justify-center font-bold text-lg text-white transition"
+          title="Reducir tamaño"
+        >
+          -
+        </button>
+      </div>
+
       {/* Controles inferiores HUD */}
       <footer className="absolute bottom-0 left-0 right-0 z-20 flex flex-col items-center p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent gap-4">
         {/* Selector de modelos animados */}
@@ -139,7 +171,7 @@ export default function ArExperience() {
         )}
       </footer>
 
-      {/* Modal para ver / imprimir marcador */}
+      {/* Modal para ver marcador */}
       {showMarkerModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
           <div className="bg-neutral-900 border border-neutral-700 rounded-2xl p-6 max-w-sm w-full text-center relative shadow-2xl">

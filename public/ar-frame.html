@@ -49,7 +49,7 @@
         id="model-doom-animated"
         gltf-model="#doom-animated-model"
         animation-mixer="clip: *; loop: repeat; timeScale: 1;"
-        scale="0.05 0.05 0.05"
+        scale="0.2 0.2 0.2"
         position="0 0 0"
         rotation="-90 0 0"
         visible="true">
@@ -59,7 +59,7 @@
         id="model-doom-180"
         gltf-model="#doom-180-model"
         animation-mixer="clip: *; loop: repeat; timeScale: 1;"
-        scale="0.05 0.05 0.05"
+        scale="0.2 0.2 0.2"
         position="0 0 0"
         rotation="-90 0 0"
         visible="false">
@@ -103,6 +103,13 @@
           doomAnimated.setAttribute('visible', modelName === 'doom-animated');
           doom180.setAttribute('visible', modelName === 'doom-180');
         }
+      } else if (event.data.type === 'SET_SCALE') {
+        const scaleVal = event.data.scale;
+        const doomAnimated = document.getElementById('model-doom-animated');
+        const doom180 = document.getElementById('model-doom-180');
+        const scaleStr = `${scaleVal} ${scaleVal} ${scaleVal}`;
+        if (doomAnimated) doomAnimated.setAttribute('scale', scaleStr);
+        if (doom180) doom180.setAttribute('scale', scaleStr);
       }
     });
   </script>
