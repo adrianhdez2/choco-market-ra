@@ -150,11 +150,12 @@ export default function Home() {
                   style={{ width: '100%', height: '100%' }}
                   alt={item.alt}
                   src={item.src}
-                  ios-src={item.iosSrc}
+                  ios-src={item.iosSrc ? `${item.iosSrc}#allowsContentScaling=0` : undefined}
                   poster={item.poster}
                   ar
                   ar-modes="webxr scene-viewer quick-look"
                   camera-controls
+                  ar-placement="floor"
                   ar-scale="fixed"
                   touch-action="pan-y"
                   shadow-intensity="1"
