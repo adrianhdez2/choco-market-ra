@@ -69,6 +69,15 @@ const PRODUCTS = [
     poster: './posters/doomA.webp',
     animated: true,
   },
+  {
+    id: 'Doctor_doom_fortnite',
+    title: 'Doctor_doom_fortnite',
+    alt: 'Doom',
+    src: './models/doom.glb',
+    iosSrc: './models/Doctor_doom_fortnite.usdz',
+    poster: './posters/doom.webp',
+    animated: false,
+  },
 ];
 
 export default function Home() {
