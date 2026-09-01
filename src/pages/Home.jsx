@@ -155,6 +155,7 @@ export default function Home() {
                   ar
                   ar-modes="webxr scene-viewer quick-look"
                   camera-controls
+                  ar-scale="fixed"
                   touch-action="pan-y"
                   shadow-intensity="1"
                   {...(item.animated ? { autoplay: true, 'animation-loop': true } : {})}
