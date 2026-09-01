@@ -78,6 +78,15 @@ const PRODUCTS = [
     poster: './posters/doom.webp',
     animated: false,
   },
+  {
+    id: 'LoyaDoom',
+    title: 'LoyaDoom',
+    alt: 'Doom',
+    src: './models/doom.glb',
+    iosSrc: './models/LoyaDoom.usdz',
+    poster: './posters/doom.webp',
+    animated: false,
+  },
 ];
 
 export default function Home() {
