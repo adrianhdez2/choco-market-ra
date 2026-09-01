@@ -44,6 +44,14 @@ const PRODUCTS = [
     poster: './posters/doomA.webp',
     animated: true,
   },
+  {
+    id: 'doom-animated-sin-hueso',
+    title: 'Doom Animado sin Hueso',
+    alt: 'Doom',
+    src: './models/doomsinhueso.glb',
+    poster: './posters/doomA.webp',
+    animated: true,
+  },
 ];
 
 export default function Home() {
