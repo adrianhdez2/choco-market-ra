@@ -20,18 +20,11 @@ const PRODUCTS = [
   },
   {
     id: 'doom',
-    title: 'Dooom',
+    title: 'Dooooom',
     alt: 'Doom',
-    src: './models/doom.glb',
+    src: './models/doomAnimado180.glb',
+    iosSrc: './models/DOOMSHAPE.usdz',
     poster: './posters/doom.webp',
-    animated: false,
-  },
-  {
-    id: 'doom-animated',
-    title: 'Doom Animado',
-    alt: 'Doom',
-    src: './models/doomAnimated.glb',
-    poster: './posters/doomA.webp',
     animated: true,
   },
   {
@@ -41,6 +34,14 @@ const PRODUCTS = [
     src: './models/doomAnimado180.glb',
     iosSrc: './models/doomUSDZ.usdz',
     poster: './posters/doomA180.webp',
+    animated: true,
+  },
+  {
+    id: 'doom-animated',
+    title: 'Doom Animado',
+    alt: 'Doom',
+    src: './models/doomAnimated.glb',
+    poster: './posters/doomA.webp',
     animated: true,
   },
 ];
