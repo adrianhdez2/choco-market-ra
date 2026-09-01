@@ -52,6 +52,23 @@ const PRODUCTS = [
     poster: './posters/doomA.webp',
     animated: true,
   },
+  {
+    id: 'doom-animated-sin-hueso-ios',
+    title: 'Doom IOS USDC (Ios)',
+    alt: 'Doom',
+    src: './models/doomV6.glb',
+    iosSrc: './models/doomIOS.usdc',
+    poster: './posters/doomA.webp',
+    animated: true,
+  },
+  {
+    id: 'doom-animated-sin-hueso-ios-v6',
+    title: 'Doom Animado sin Hueso V6',
+    alt: 'Doom',
+    src: './models/doomV6.glb',
+    poster: './posters/doomA.webp',
+    animated: true,
+  },
 ];
 
 export default function Home() {
