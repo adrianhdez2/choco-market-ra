@@ -2,22 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PRODUCTS = [
-  {
-    id: 'abanico',
-    title: 'Abanico',
-    alt: 'Artesania tabasqueña',
-    src: './models/abanico.glb',
-    poster: './posters/abanico.webp',
-    animated: false,
-  },
-  {
-    id: 'jicara',
-    title: 'Jícara labrada',
-    alt: 'Artesania tabasqueña',
-    src: './models/jicara.glb',
-    poster: './posters/jicara.webp',
-    animated: false,
-  },
+  // {
+  //   id: 'abanico',
+  //   title: 'Abanico',
+  //   alt: 'Artesania tabasqueña',
+  //   src: './models/abanico.glb',
+  //   poster: './posters/abanico.webp',
+  //   animated: false,
+  // },
+  // {
+  //   id: 'jicara',
+  //   title: 'Jícara labrada',
+  //   alt: 'Artesania tabasqueña',
+  //   src: './models/jicara.glb',
+  //   poster: './posters/jicara.webp',
+  //   animated: false,
+  // },
   // {
   //   id: 'doom',
   //   title: 'Dooooom',
@@ -69,32 +69,41 @@ const PRODUCTS = [
   //   poster: './posters/doomA.webp',
   //   animated: true,
   // },
+  // {
+  //   id: 'Doctor_doom_fortnite',
+  //   title: 'Doctor_doom_fortnite',
+  //   alt: 'Doom',
+  //   src: './models/doom.glb',
+  //   iosSrc: './models/Doctor_doom_fortnite.usdz',
+  //   poster: './posters/doom.webp',
+  //   animated: false,
+  // },
+  // {
+  //   id: 'LoyaDoom',
+  //   title: 'LoyaDoom',
+  //   alt: 'Doom',
+  //   src: './models/doom.glb',
+  //   iosSrc: './models/LoyaDoom.usdz',
+  //   poster: './posters/doom.webp',
+  //   animated: false,
+  // },
+  // {
+  //   id: 'LoyaDoom2',
+  //   title: 'LoyaDoom2',
+  //   alt: 'Doom',
+  //   src: './models/doom.glb',
+  //   iosSrc: './models/LoyaDoom2.usdz',
+  //   poster: './posters/doom.webp',
+  //   animated: false,
+  // },
   {
-    id: 'Doctor_doom_fortnite',
-    title: 'Doctor_doom_fortnite',
+    id: 'doom-vivo',
+    title: 'Doom Vivo',
     alt: 'Doom',
-    src: './models/doom.glb',
-    iosSrc: './models/Doctor_doom_fortnite.usdz',
-    poster: './posters/doom.webp',
-    animated: false,
-  },
-  {
-    id: 'LoyaDoom',
-    title: 'LoyaDoom',
-    alt: 'Doom',
-    src: './models/doom.glb',
-    iosSrc: './models/LoyaDoom.usdz',
-    poster: './posters/doom.webp',
-    animated: false,
-  },
-  {
-    id: 'LoyaDoom2',
-    title: 'LoyaDoom2',
-    alt: 'Doom',
-    src: './models/doom.glb',
-    iosSrc: './models/LoyaDoom2.usdz',
-    poster: './posters/doom.webp',
-    animated: false,
+    src: './models/doom/DoomVivo.glb',
+    iosSrc: './models/doom/Doomvivo.usdz',
+    poster: './posters/doom-vivo.webp',
+    animated: true,
   },
 ];
 
@@ -124,12 +133,26 @@ export default function Home() {
               Visualiza los modelos animados de Doom en tiempo real apuntando tu cámara a un marcador físico.
             </p>
           </div>
-          <Link
-            to="/ar"
-            className="whitespace-nowrap px-6 py-3 bg-white text-orange-600 hover:bg-orange-50 font-semibold rounded-xl shadow transition duration-200 hover:scale-105 active:scale-95"
-          >
-            Iniciar Experiencia AR →
-          </Link>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2.5">
+            <Link
+              to="/smart-ar"
+              className="whitespace-nowrap px-5 py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold rounded-xl shadow-lg transition duration-200 hover:scale-105 active:scale-95 text-center text-sm"
+            >
+              🚀 Escanear y Lanzar AR (Nativo) →
+            </Link>
+            <Link
+              to="/mindar"
+              className="whitespace-nowrap px-4 py-3 bg-neutral-900 text-amber-300 hover:bg-black font-semibold rounded-xl shadow transition duration-200 hover:scale-105 active:scale-95 text-center text-sm"
+            >
+              MindAR (Web)
+            </Link>
+            <Link
+              to="/ar"
+              className="whitespace-nowrap px-4 py-3 bg-white text-orange-600 hover:bg-orange-50 font-semibold rounded-xl shadow transition duration-200 hover:scale-105 active:scale-95 text-center text-sm"
+            >
+              Marcador AR.js
+            </Link>
+          </div>
         </div>
       </section>
 

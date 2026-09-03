@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>MindAR Engine</title>
+
+  <!-- A-Frame (1.5.0) -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <!-- MindAR Image Tracking -->
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <!-- aframe-extras -->
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.2.0/dist/aframe-extras.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      background: transparent;
+    }
+
+    .mindar-ui-overlay,
+    .mindar-ui-loading,
+    .mindar-ui-scanning {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <a-scene
+    mindar-image="imageTargetSrc: /markers/targets.mind; filterMinCF: 0.001; filterBeta: 1000; warmupTolerance: 5; missTolerance: 5; uiScanning: no; uiLoading: no;"
+    color-space="sRGB"
+    embedded
+    renderer="colorManagement: true, physicallyCorrectLights: true"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false">
+
+    <!-- Precargar modelos 3D -->
+    <a-assets timeout="60000">
+      <a-asset-item id="doom-vivo-model" src="/models/doom/DoomVivo.glb"></a-asset-item>
+    </a-assets>
+
+    <!-- Luces para sombras y volumen -->
+    <a-light type="ambient" color="#ffffff" intensity="1.4"></a-light>
+    <a-light type="directional" color="#fff5ea" intensity="1.6" position="2 4 3"></a-light>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+    <!-- Target 0: El ancla física en el mundo real -->
+    <a-entity mindar-image-target="targetIndex: 0" id="target-0">
+      <a-entity
+        id="model-entity"
+        gltf-model="#doom-vivo-model"
+        animation-mixer="clip: *; loop: repeat; timeScale: 1;"
+        scale="0.5 0.5 0.5"
+        position="0 0 0"
+        rotation="90 0 0">
+      </a-entity>
+    </a-entity>
+  </a-scene>
+
+  <script>
+    const scene = document.querySelector('a-scene');
+    const target0 = document.getElementById('target-0');
+    const modelEntity = document.getElementById('model-entity');
+
+    function notifyParent(type, payload = {}) {
+      if (window.parent) {
+        window.parent.postMessage({ type, ...payload }, '*');
+      }
+    }
+
+    scene.addEventListener('loaded', () => {
+      notifyParent('MINDAR_SCENE_LOADED');
+    });
+
+    if (target0) {
+      target0.addEventListener('targetFound', () => {
+        notifyParent('MINDAR_TARGET_FOUND', { targetIndex: 0 });
+      });
+
+      target0.addEventListener('targetLost', () => {
+        notifyParent('MINDAR_TARGET_LOST', { targetIndex: 0 });
+      });
+    }
+
+    // Escuchar mensajes desde React
+    window.addEventListener('message', (event) => {
+      if (!event.data || typeof event.data !== 'object') return;
+
+      if (event.data.type === 'SET_SCALE') {
+        const s = event.data.scale;
+        if (modelEntity) {
+          modelEntity.setAttribute('scale', `${s} ${s} ${s}`);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
