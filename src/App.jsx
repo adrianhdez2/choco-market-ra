@@ -4,7 +4,6 @@ import Home from './pages/Home.jsx';
 import ArExperience from './pages/ArExperience.jsx';
 import MindArExperience from './pages/MindArExperience.jsx';
 import SmartArLauncher from './pages/SmartArLauncher.jsx';
-import Prueba from './pages/Prueba.jsx';
 
 export default function App() {
   return (
@@ -13,7 +12,6 @@ export default function App() {
       <Route path="/ar" element={<ArExperience />} />
       <Route path="/mindar" element={<MindArExperience />} />
       <Route path="/smart-ar" element={<SmartArLauncher />} />
-      <Route path="/prueba" element={<Prueba />} />
       <Route path="*" element={<Home />} />
     </Routes>
   );
